@@ -1,36 +1,34 @@
 package com.mauriciofe.github.io.sessao4daniel;
 
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
-import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-import com.mauriciofe.github.io.sessao4daniel.ui.gallery.GalleryFragment;
-import com.mauriciofe.github.io.sessao4daniel.ui.home.HomeFragment;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
-import androidx.fragment.app.FragmentManager;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import kotlin.jvm.internal.CollectionToArray;
+import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
+    TextView edtEmail;
+    TextView edtNome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +36,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -51,6 +51,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupWithNavController(navigationView, navController);
 
         navigationView.setNavigationItemSelectedListener(this);
+        edtEmail = headerView.findViewById(R.id.header_txtEmail);
+        edtNome = headerView.findViewById(R.id.header_txtNome);
+        Intent intent = getIntent();
+        String result = intent.getStringExtra("usuarioLogado");
+        try {
+            edtEmail.setText(new JSONObject(result).getString("email"));
+            edtNome.setText(new JSONObject(result).getString("nome"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -82,10 +92,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.nav_exit){
+        if (item.getItemId() == R.id.nav_exit) {
             finish();
             return false;
-        }else{
+        } else {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
             NavigationUI.onNavDestinationSelected(item, navController);
             drawer.closeDrawer(GravityCompat.START);
