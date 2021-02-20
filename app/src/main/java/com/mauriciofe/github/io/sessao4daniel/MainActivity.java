@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navVisualizar.setEnabled(false);
         }
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_report, R.id.nav_visualizar)
+                R.id.nav_home, R.id.nav_report)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
