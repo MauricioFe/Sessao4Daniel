@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     TextView edtEmail;
     TextView edtNome;
+    int funcaoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +37,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        Intent intent = getIntent();
+        String result = intent.getStringExtra("usuarioLogado");
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+        try {
+            funcaoId = new JSONObject(result).getInt("funcaoId");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Menu menuNav = navigationView.getMenu();
+        MenuItem navVisualizar = menuNav.findItem(R.id.nav_visualizar);
+        if (funcaoId == 2) {
+            navVisualizar.setEnabled(false);
+        }
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_report, R.id.nav_visualizar)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -53,8 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         edtEmail = headerView.findViewById(R.id.header_txtEmail);
         edtNome = headerView.findViewById(R.id.header_txtNome);
-        Intent intent = getIntent();
-        String result = intent.getStringExtra("usuarioLogado");
+
         try {
             edtEmail.setText(new JSONObject(result).getString("email"));
             edtNome.setText(new JSONObject(result).getString("nome"));
