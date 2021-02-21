@@ -1,6 +1,8 @@
 package com.mauriciofe.github.io.sessao4daniel.models;
 
-public class Relato {
+import java.io.Serializable;
+
+public class Relato implements Serializable {
     private int id;
     private String relato;
     private String imagem;
@@ -9,6 +11,8 @@ public class Relato {
     private int usuarioId;
     private String nomeUsuario;
     private String telefone;
+    private String email;
+
 
     public int getId() {
         return id;
@@ -72,5 +76,13 @@ public class Relato {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -17,8 +17,8 @@
         <activity
             android:name=".DetalheRelatoActivity"
             android:label="@string/title_activity_detalhe_relato"
-            android:theme="@style/Theme.Sessao4Daniel.NoActionBar"></activity>
-        <activity android:name=".RelatoDetalhesActivity" />
+            android:theme="@style/Theme.Sessao4Daniel.NoActionBar">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

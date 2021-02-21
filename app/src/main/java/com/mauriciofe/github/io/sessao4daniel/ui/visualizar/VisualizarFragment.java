@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mauriciofe.github.io.sessao4daniel.CallBack;
+import com.mauriciofe.github.io.sessao4daniel.DetalheRelatoActivity;
 import com.mauriciofe.github.io.sessao4daniel.ListRelatosAdapter;
-import com.mauriciofe.github.io.sessao4daniel.RelatoDetalhesActivity;
 import com.mauriciofe.github.io.sessao4daniel.MyAssycTask;
 import com.mauriciofe.github.io.sessao4daniel.R;
 import com.mauriciofe.github.io.sessao4daniel.models.Relato;
@@ -53,6 +53,7 @@ public class VisualizarFragment extends Fragment {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         Relato relato = new Relato();
                         relato.setId(jsonObject.getInt("id"));
+                        relato.setRelato(jsonObject.getString("relato"));
                         relato.setLatitude(String.valueOf(jsonObject.getDouble("latitude")));
                         relato.setLongitude(String.valueOf(jsonObject.getDouble("longitude")));
                         String bacon = jsonObject.getString("usuarioId");
@@ -60,9 +61,11 @@ public class VisualizarFragment extends Fragment {
                             relato.setUsuarioId(jsonObject.getInt("usuarioId"));
                             relato.setNomeUsuario(jsonObject.getJSONObject("usuario").getString("nome"));
                             relato.setTelefone(jsonObject.getJSONObject("usuario").getString("telefone"));
+                            relato.setEmail(jsonObject.getJSONObject("usuario").getString("email"));
                         } else {
                             relato.setNomeUsuario("Anônimo");
                             relato.setTelefone("(##) #####-####");
+                            relato.setEmail("###@###");
                         }
                         relatosList.add(relato);
                     }
@@ -76,7 +79,7 @@ public class VisualizarFragment extends Fragment {
         adapter.setOnItemClickListener(new ListRelatosAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Relato relato, int position) {
-                startActivity(new Intent(getContext(), RelatoDetalhesActivity.class));
+                startActivity(new Intent(getContext(), DetalheRelatoActivity.class).putExtra("relato", relato));
             }
         });
         return root;
