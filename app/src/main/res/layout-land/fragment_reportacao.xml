@@ -41,13 +41,14 @@
 
     <Switch
         android:id="@+id/reportar_swRelatarAnonimamente"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="Relatar Anônimamente"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reportar_txtEmail" />
 
@@ -63,13 +64,14 @@
 
     <EditText
         android:id="@+id/reportar_edtRelato"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="301dp"
+        android:layout_height="43dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="@+id/reportar_swRelatarAnonimamente"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -77,11 +79,11 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans"
         android:text="Imagem"
-        app:layout_constraintStart_toStartOf="@+id/reportar_edtRelato"
-        app:layout_constraintTop_toBottomOf="@+id/reportar_edtRelato" />
+        app:layout_constraintStart_toStartOf="@+id/reportar_txtNome"
+        app:layout_constraintTop_toTopOf="@+id/reportar_swRelatarAnonimamente" />
 
     <Button
         android:id="@+id/reportar_btnFotografar"
@@ -90,24 +92,36 @@
         android:text="Fotografar"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintHorizontal_bias="0.608"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="146dp"
         android:layout_height="150dp"
-        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/reportar_btnFotografar"
+        tools:layout_editor_absoluteY="148dp"
         tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/reportar_btnLocalizar"
+        android:layout_width="128dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:text="Localizar"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/reportar_txtLogintude"
+        app:layout_constraintTop_toBottomOf="@+id/reportar_txtLogintude"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
+        android:layout_marginStart="52dp"
         android:fontFamily="@font/open_sans_semibold"
         android:text="Localização"
         android:textColor="#222"
@@ -123,7 +137,7 @@
         android:layout_marginEnd="19dp"
         android:text="latitude"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -139,21 +153,10 @@
         app:layout_constraintTop_toBottomOf="@+id/reportar_txtLatitude" />
 
     <Button
-        android:id="@+id/reportar_btnLocalizar"
-        android:layout_width="128dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:text="Localizar"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/reportar_txtLogintude"
-        app:layout_constraintTop_toBottomOf="@+id/reportar_txtLogintude"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
         android:id="@+id/reportar_btnSalvar"
         android:layout_width="133dp"
         android:layout_height="49dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="184dp"
         android:text="Salvar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -167,7 +170,8 @@
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="@+id/reportar_btnSalvar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toEndOf="@+id/reportar_btnSalvar"
-        app:layout_constraintTop_toTopOf="@+id/reportar_btnSalvar" />
+        app:layout_constraintTop_toTopOf="@+id/reportar_btnSalvar"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
