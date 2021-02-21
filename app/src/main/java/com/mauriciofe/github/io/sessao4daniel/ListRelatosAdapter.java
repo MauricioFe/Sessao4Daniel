@@ -10,20 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mauriciofe.github.io.sessao4daniel.models.Relato;
-import com.mauriciofe.github.io.sessao4daniel.ui.visualizar.VisualizarFragment;
 
 import java.util.List;
 
 public class ListRelatosAdapter extends RecyclerView.Adapter<ListRelatosAdapter.ListRelatosViewHolder> {
+
+    private List<Relato> relatosList;
+    private Context context;
+    private OnItemClickListener onItemClickListener;
 
     public ListRelatosAdapter(List<Relato> relatosList, Context context) {
         this.relatosList = relatosList;
         this.context = context;
     }
 
-
-    private List<Relato> relatosList;
-    private Context context;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     @NonNull
     @Override
@@ -53,6 +56,7 @@ public class ListRelatosAdapter extends RecyclerView.Adapter<ListRelatosAdapter.
         TextView txtTelefone;
         TextView txtLatitude;
         TextView txtLongitude;
+        private Relato relato;
 
         public ListRelatosViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,14 +64,25 @@ public class ListRelatosAdapter extends RecyclerView.Adapter<ListRelatosAdapter.
             txtTelefone = itemView.findViewById(R.id.item_txtTelefone);
             txtLatitude = itemView.findViewById(R.id.item_txtLatitude);
             txtLongitude = itemView.findViewById(R.id.item_txtLongitude);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(relato, getAdapterPosition());
+                }
+            });
         }
 
         public void vincula(Relato relato) {
+            this.relato = relato;
             //vincular dados da lista para  tela
             txtNomeRelator.setText(relato.getNomeUsuario());
             txtTelefone.setText(relato.getTelefone());
             txtLatitude.setText(relato.getLatitude());
             txtLongitude.setText(relato.getLongitude());
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Relato relato, int position);
     }
 }

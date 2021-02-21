@@ -1,5 +1,6 @@
 package com.mauriciofe.github.io.sessao4daniel.ui.visualizar;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mauriciofe.github.io.sessao4daniel.CallBack;
 import com.mauriciofe.github.io.sessao4daniel.ListRelatosAdapter;
+import com.mauriciofe.github.io.sessao4daniel.MainActivity;
+import com.mauriciofe.github.io.sessao4daniel.MainActivity2;
 import com.mauriciofe.github.io.sessao4daniel.MyAssycTask;
 import com.mauriciofe.github.io.sessao4daniel.R;
 import com.mauriciofe.github.io.sessao4daniel.models.Relato;
@@ -69,6 +72,12 @@ public class VisualizarFragment extends Fragment {
                     e.printStackTrace();
                 }
 
+            }
+        });
+        adapter.setOnItemClickListener(new ListRelatosAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Relato relato, int position) {
+                startActivity(new Intent(getContext(), MainActivity2.class));
             }
         });
         return root;
