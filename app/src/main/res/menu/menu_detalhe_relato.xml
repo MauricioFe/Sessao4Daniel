@@ -3,8 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mauriciofe.github.io.sessao4daniel.DetalheRelatoActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_edit"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="Editar"
+        android:icon="@drawable/ic_baseline_edit"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="100"
+        android:title="Excluir"
+        android:icon="@drawable/ic_baseline_delete"
+        app:showAsAction="never"/>
 </menu>
