@@ -1,22 +1,19 @@
 package com.mauriciofe.github.io.sessao4daniel.ui.visualizar;
 
-import android.app.Activity;
-import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mauriciofe.github.io.sessao4daniel.CallBack;
 import com.mauriciofe.github.io.sessao4daniel.ListRelatosAdapter;
-import com.mauriciofe.github.io.sessao4daniel.MainActivity;
 import com.mauriciofe.github.io.sessao4daniel.MyAssycTask;
 import com.mauriciofe.github.io.sessao4daniel.R;
 import com.mauriciofe.github.io.sessao4daniel.models.Relato;
@@ -39,7 +36,10 @@ public class VisualizarFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_visualizar, container, false);
         listRelatos = root.findViewById(R.id.list_relatos);
-        listRelatos.setLayoutManager(new LinearLayoutManager(getContext()));
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            listRelatos.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        } else
+            listRelatos.setLayoutManager(new LinearLayoutManager(getContext()));
         ListRelatosAdapter adapter = new ListRelatosAdapter(relatosList, getContext());
         listRelatos.setAdapter(adapter);
         MyAssycTask.requestApi(BASE_URL + "relatos", METHOD_GET, null, new CallBack<String>() {
