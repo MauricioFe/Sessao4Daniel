@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mauriciofe.github.io.sessao4daniel.models.Relato;
+import com.mauriciofe.github.io.sessao4daniel.ui.visualizar.VisualizarFragment;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class ListRelatosAdapter extends RecyclerView.Adapter<ListRelatosAdapter.
         this.relatosList = relatosList;
         this.context = context;
     }
+
 
     private List<Relato> relatosList;
     private Context context;
@@ -39,6 +41,11 @@ public class ListRelatosAdapter extends RecyclerView.Adapter<ListRelatosAdapter.
     @Override
     public int getItemCount() {
         return relatosList.size();
+    }
+
+    public void atualizaLista(List<Relato> relatosList) {
+        this.relatosList = relatosList;
+        notifyDataSetChanged();
     }
 
     public class ListRelatosViewHolder extends RecyclerView.ViewHolder {

@@ -19,6 +19,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.mauriciofe.github.io.sessao4daniel.ui.visualizar.VisualizarFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
