@@ -101,6 +101,12 @@ public class ReportAcaoFragment extends Fragment {
                 }
             }
         });
+
+        btnLocalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
         return root;
     }
 
@@ -114,7 +120,6 @@ public class ReportAcaoFragment extends Fragment {
     }
 
     private void cadastrarRelato() {
-
         JSONStringer js = new JSONStringer();
         try {
             js.object();
@@ -122,7 +127,10 @@ public class ReportAcaoFragment extends Fragment {
             js.key("imagem").value(nomeImagem);
             js.key("latitude").value(txtLongitude.getText().toString());
             js.key("longitude").value(txtLongitude.getText().toString());
-            js.key("usuarioId").value(txtUsuarioId.getText().toString());
+            if (swRealatarAnonino.isChecked())
+                js.key("usuarioId").value(null);
+            else
+                js.key("usuarioId").value(txtUsuarioId.getText().toString());
             js.endObject();
         } catch (JSONException e) {
             e.printStackTrace();
